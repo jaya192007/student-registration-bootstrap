@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Result</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <h1 class="text-center fw-bold mb-4">
+            Student Result
+        </h1>
+
+        <!-- Student Details -->
+        <div class="card shadow p-4 mb-4">
+
+            <h3 class="text-center mb-4">
+                Student Details
+            </h3>
+
+            <div class="mb-3">
+                <strong>Student Name:</strong>
+                <span id="displayName"></span>
+            </div>
+
+            <div class="mb-3">
+                <strong>Register Number:</strong>
+                <span id="displayRegisterNumber"></span>
+            </div>
+
+            <div class="mb-3">
+                <strong>Department:</strong>
+                <span id="displayDepartment"></span>
+            </div>
+
+            <div class="mb-3">
+                <strong>Email:</strong>
+                <span id="displayEmail"></span>
+            </div>
+
+        </div>
+
+        <!-- Marks Section -->
+        <div class="card shadow p-4">
+
+            <h3 class="text-center mb-4">
+                Enter Marks
+            </h3>
+
+            <div class="mb-3">
+                <label class="form-label">Web Essentials</label>
+                <input type="number" id="mark1" class="form-control"
+                       min="0" max="100" placeholder="Enter marks">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Database Management System</label>
+                <input type="number" id="mark2" class="form-control"
+                       min="0" max="100" placeholder="Enter marks">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Computer Networks</label>
+                <input type="number" id="mark3" class="form-control"
+                       min="0" max="100" placeholder="Enter marks">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Deep Learning</label>
+                <input type="number" id="mark4" class="form-control"
+                       min="0" max="100" placeholder="Enter marks">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Software Engineering</label>
+                <input type="number" id="mark5" class="form-control"
+                       min="0" max="100" placeholder="Enter marks">
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-success px-4" onclick="calculateResult()">
+                    Calculate Result
+                </button>
+            </div>
+
+            <!-- Result -->
+            <div id="resultBox" class="mt-4 text-center" style="display: none;">
+
+                <h4>Total Marks: <span id="total"></span> / 500</h4>
+
+                <h4>Percentage: <span id="percentage"></span>%</h4>
+
+                <h4>Grade: <span id="grade"></span></h4>
+
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="goBack()">
+                    Back to Registration
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        // Display student details
+        document.getElementById("displayName").textContent =
+            localStorage.getItem("studentName");
+
+        document.getElementById("displayRegisterNumber").textContent =
+            localStorage.getItem("registerNumber");
+
+        document.getElementById("displayDepartment").textContent =
+            localStorage.getItem("department");
+
+        document.getElementById("displayEmail").textContent =
+            localStorage.getItem("email");
+
+
+        // Calculate Result
+        function calculateResult() {
+
+            let mark1 = Number(document.getElementById("mark1").value);
+            let mark2 = Number(document.getElementById("mark2").value);
+            let mark3 = Number(document.getElementById("mark3").value);
+            let mark4 = Number(document.getElementById("mark4").value);
+            let mark5 = Number(document.getElementById("mark5").value);
+
+            if (
+                mark1 < 0 || mark1 > 100 ||
+                mark2 < 0 || mark2 > 100 ||
+                mark3 < 0 || mark3 > 100 ||
+                mark4 < 0 || mark4 > 100 ||
+                mark5 < 0 || mark5 > 100
+            ) {
+                alert("Please enter marks between 0 and 100.");
+                return;
+            }
+
+            let total = mark1 + mark2 + mark3 + mark4 + mark5;
+
+            let percentage = (total / 500) * 100;
+
+            let grade;
+
+            if (percentage >= 90) {
+                grade = "A+";
+            } else if (percentage >= 80) {
+                grade = "A";
+            } else if (percentage >= 70) {
+                grade = "B";
+            } else if (percentage >= 60) {
+                grade = "C";
+            } else if (percentage >= 50) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            document.getElementById("total").textContent = total;
+
+            document.getElementById("percentage").textContent =
+                percentage.toFixed(2);
+
+            document.getElementById("grade").textContent = grade;
+
+            document.getElementById("resultBox").style.display = "block";
+        }
+
+
+        // Back to registration
+        function goBack() {
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+</html>

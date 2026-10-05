@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration and Result Portal</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <h1 class="text-center fw-bold mb-4">
+            Student Registration and Result Portal
+        </h1>
+
+        <div class="card shadow p-4">
+
+            <h3 class="text-center mb-4">
+                Student Registration
+            </h3>
+
+            <form id="registrationForm">
+
+                <!-- Student Name -->
+                <div class="mb-3">
+                    <label class="form-label">Student Name</label>
+                    <input type="text" id="studentName" class="form-control"
+                           placeholder="Enter your name" required>
+                </div>
+
+                <!-- Register Number -->
+                <div class="mb-3">
+                    <label class="form-label">Register Number</label>
+                    <input type="text" id="registerNumber" class="form-control"
+                           placeholder="Enter register number" required>
+                </div>
+
+                <!-- Department -->
+                <div class="mb-3">
+                    <label class="form-label">Department</label>
+                    <select id="department" class="form-select" required>
+                        <option value="">Select Department</option>
+                        <option>Information Technology</option>
+                        <option>Computer Science</option>
+                        <option>Electronics and Communication</option>
+                        <option>Electrical and Electronics</option>
+                    </select>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control"
+                           placeholder="Enter email" required>
+                </div>
+
+                <!-- Register Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-4">
+                        Register
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Our JavaScript -->
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("studentName").value;
+            const registerNumber = document.getElementById("registerNumber").value;
+            const department = document.getElementById("department").value;
+            const email = document.getElementById("email").value;
+
+            localStorage.setItem("studentName", name);
+            localStorage.setItem("registerNumber", registerNumber);
+            localStorage.setItem("department", department);
+            localStorage.setItem("email", email);
+
+            window.location.href = "result.html";
+        });
+    </script>
+
+</body>
+</html>
